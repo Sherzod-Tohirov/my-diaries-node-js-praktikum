@@ -1,0 +1,33 @@
+<div class="container py-5">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {{#each entries}}
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img
+            src="{{image}}"
+            class="card-img-top"
+            alt="{{title}}"
+            style="height: 200px; object-fit: cover;"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-subtitle text-muted mb-2">{{formatDate date}}</p>
+            <p class="card-text">{{excerpt}}</p>
+            <a href="/diary/{{id}}" class="btn btn-primary stretched-link">Read
+              More</a>
+          </div>
+        </div>
+      </div>
+    {{else}}
+      <div class="col-12 text-center py-5">
+        <div class="card p-5 shadow-sm">
+          <h2 class="mb-3">No diary entries yet</h2>
+          <p class="text-muted">Start writing your first diary entry!</p>
+          <div class="mt-4">
+            <a href="/diary/new" class="btn btn-primary btn-lg">Create New Entry</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
