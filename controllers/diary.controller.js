@@ -136,8 +136,51 @@ const addNewDiary = async (req, res) => {
   }
 };
 
+// Description: Edit diary page.
+// Route: GET
+// Access: Private
+const editDiaryPage = async (req, res) => {
+  const { id } = req.params;
+  const diary = await Diary.findByPk(id);
+  console.log(diary.dataValues, "diary");
+  if (!diary) {
+    return res.status(404).send("Diary not found.");
+  }
+  res.render(`diary/add-diary`, { diary: diary?.dataValues || {} });
+};
+
+// Description: Edit diary.
+// Route: POST
+// Access: Private
+const editDiary = async (req, res) => {
+  const { id } = req.params;
+  const { imageUrl, text } = req.body;
+  try {
+    await Diary.update({ imageUrl, text }, { where: { id } });
+    res.redirect(`/diary/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Description: Delete diary.
+// Route: POST
+// Access: Private
+const deleteDiary = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Diary.destroy({ where: { id } });
+    res.redirect(`/diary`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
+  editDiary,
   getMyDiary,
   addNewDiary,
+  deleteDiary,
+  editDiaryPage,
   getSingleDiary,
 };

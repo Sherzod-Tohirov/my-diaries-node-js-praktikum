@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
           <form
-            action="/config/"
+            action="{{#if diary}}/diary/edit/{{diary.id}}{{else}}/diary/add{{/if}}"
             method="POST"
             class="needs-validation"
             novalidate
@@ -23,6 +23,7 @@
                   class="form-control"
                   id="imageUrl"
                   name="imageUrl"
+                  value="{{diary.imageUrl}}"
                   placeholder="https://example.com/image.jpg"
                   required
                 />
@@ -39,15 +40,15 @@
                 rows="6"
                 placeholder="Shu yerda yozing..."
                 required
-              ></textarea>
+              >{{diary.text}}</textarea>
             </div>
 
             <div class="d-grid gap-2">
               <button type="submit" class="btn btn-primary">
                 <i class="bi bi-journal-plus"></i>
-                Yaratish
+                {{#if diary}}Saqlash{{else}}Yaratish{{/if}}
               </button>
-              <a href="/" class="btn btn-outline-secondary">
+              <a href="{{#if diary}}/diary/{{diary.id}}{{else}}/{{/if}}" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i>
                 Ortga
               </a>
