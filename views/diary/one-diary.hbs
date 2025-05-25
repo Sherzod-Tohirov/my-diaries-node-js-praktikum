@@ -1,0 +1,27 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-2 col-md-2 col-lg-2 flex-col">
+      <a href="/" class="btn btn-md btn-secondary">Back &lfisht;</a>
+    </div>
+    <div class="col-12 col-md-8 col-lg-6">
+      <div class="card h-100 shadow-sm">
+        <img
+          src="{{diary.imageUrl}}"
+          class="card-img-top"
+          alt="{{diary.imageUrl}}"
+          style="height: 200px; object-fit: cover;"
+        />
+        <div class="card-body">
+          <p class="card-subtitle text-muted mb-2">{{formatDate
+              diary.createdAt
+            }}</p>
+          <p class="card-text">{{diary.text}}</p>
+        </div>
+        <div class="card-footer">
+          <a href="/" class="btn btn-md btn-primary">Edit</a>
+          <a href="/" class="btn btn-md btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

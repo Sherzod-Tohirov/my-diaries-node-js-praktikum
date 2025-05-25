@@ -24,7 +24,8 @@ app.engine(
 app.set("view engine", ".hbs");
 
 // Initialize routes
-app.use("/", require("./routes/diary.route"));
+app.use("/", require("./routes/index.route"));
+app.use("/diary", require("./routes/diary.route"));
 
 // Sync database
 const start = () => {

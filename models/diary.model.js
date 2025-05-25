@@ -1,5 +1,4 @@
 const { DataTypes } = require("sequelize");
-
 module.exports = (sequalize, Sequalize) => {
   const Diary = sequalize.define(
     "diary",

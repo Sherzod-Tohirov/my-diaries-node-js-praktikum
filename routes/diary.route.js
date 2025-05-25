@@ -1,11 +1,16 @@
 const { Router } = require("express");
 
-const { getMyDiary, addNewDiary } = require("../controllers/diary.controller");
+const {
+  getMyDiary,
+  addNewDiary,
+  getSingleDiary,
+} = require("../controllers/diary.controller");
 
 const router = Router();
 
 router.get("/", getMyDiary);
-router.get("/add-diary", addNewDiary);
-router.post("/add-diary", addNewDiary);
+router.get("/:id", getSingleDiary);
+router.get("/add", addNewDiary);
+router.post("/add", addNewDiary);
 
 module.exports = router;

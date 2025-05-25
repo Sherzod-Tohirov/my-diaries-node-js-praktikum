@@ -95,8 +95,21 @@ const getMyDiary = async (req, res) => {
     excerpt: diary.text.substring(0, 100) + "...", // Create excerpt from text
     image: diary.imageUrl || "https://via.placeholder.com/400x300", // Fallback image
   }));
-  console.log(data);
   res.render("diary/my-diary", { entries: formattedDiaries });
+};
+
+// Description: Get single diary.
+// Route: GET
+// Access: Private
+
+const getSingleDiary = async (req, res) => {
+  const { id } = req.params;
+  const diary = await Diary.findByPk(id);
+  console.log(diary.dataValues, "diary");
+  if (!diary) {
+    return res.status(404).send("Diary not found.");
+  }
+  res.render("diary/one-diary", { diary: diary?.dataValues || {} });
 };
 
 // Description: Add new diary.
@@ -126,4 +139,5 @@ const addNewDiary = async (req, res) => {
 module.exports = {
   getMyDiary,
   addNewDiary,
+  getSingleDiary,
 };
